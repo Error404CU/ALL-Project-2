@@ -1,4 +1,6 @@
 from Tkinter import *
+import time
+import random
 window = Tk()
 canvas = Canvas(window, width = 1200, height = 800, bg = 'yellow')
 canvas.pack()
@@ -43,6 +45,67 @@ f3 = 930
 f4 = 670
 
 Lm6 = canvas.create_rectangle(f1, f2, f3, f4, fill = 'green')
+
+
+Tr1 = canvas.create_rectangle(85,85,85+10,85+10, fill = 'yellow')
+Tr2 = canvas.create_rectangle(560,560,560+10,560+10, fill = 'yellow')
+Tr3 = canvas.create_rectangle(1030,260,1030+10,260+10, fill = 'yellow')
+Tr4 = canvas.create_rectangle(80,710,80+10,710+10, fill = 'yellow')
+Tr5 = canvas.create_rectangle(330,280,330+10,280+10, fill = 'yellow')
+Tr6 = canvas.create_rectangle(965,705,965+10,705+10, fill = 'yellow')
+
+
+list1 = [Tr1,Tr2,Tr3,Tr4,Tr5,Tr6]
+
+RandomTreasure = random.choice(list1)
+
+if RandomTreasure == Tr1:
+    Tr1 = canvas.create_rectangle(85,85,85+10,85+10, fill = 'blue')
+    canvas.delete(Tr2)
+    canvas.delete(Tr3)
+    canvas.delete(Tr4)
+    canvas.delete(Tr5)
+    canvas.delete(Tr6)
+
+if RandomTreasure == Tr2:
+    Tr2 = canvas.create_rectangle(560,560,560+10,560+10, fill = 'blue')
+    canvas.delete(Tr1)
+    canvas.delete(Tr3)
+    canvas.delete(Tr4)
+    canvas.delete(Tr5)
+    canvas.delete(Tr6)
+
+if RandomTreasure == Tr3:
+    Tr3 = canvas.create_rectangle(1030,260,1030+10,260+10, fill = 'blue')
+    canvas.delete(Tr1)
+    canvas.delete(Tr2)
+    canvas.delete(Tr4)
+    canvas.delete(Tr5)
+    canvas.delete(Tr6)
+
+if RandomTreasure == Tr4:
+    Tr4 = canvas.create_rectangle(80,710,80+10,710+10, fill = 'blue')
+    canvas.delete(Tr1)
+    canvas.delete(Tr2)
+    canvas.delete(Tr3)
+    canvas.delete(Tr5)
+    canvas.delete(Tr6)
+
+if RandomTreasure == Tr5:
+    Tr5 = canvas.create_rectangle(330,280,330+10,280+10, fill = 'blue')
+    canvas.delete(Tr1)
+    canvas.delete(Tr2)
+    canvas.delete(Tr3)
+    canvas.delete(Tr4)
+    canvas.delete(Tr6)
+
+if RandomTreasure == Tr6:
+    Tr6 = canvas.create_rectangle(965,705,965+10,705+10, fill = 'blue')
+    canvas.delete(Tr1)
+    canvas.delete(Tr2)
+    canvas.delete(Tr3)
+    canvas.delete(Tr4)
+    canvas.delete(Tr5)
 
 vx = 10.0
 vy = 10.0
