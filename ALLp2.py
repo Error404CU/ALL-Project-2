@@ -44,4 +44,45 @@ f4 = 670
 
 Lm6 = canvas.create_rectangle(f1, f2, f3, f4, fill = 'green')
 
+vx = 10.0
+vy = 10.0
+
+Ro1 = canvas.create_rectangle(20, 20, 20+10, 20+10)
+
+def right():
+    canvas.coords(Ro1,x1+vx,y1,x2+vx,y2)
+    canvas.update()
+    time.sleep(0.1)
+    
+def left():
+    canvas.coords(Ro1, x1-vx,y1,x2-vx,y2)
+    canvas.update()
+    time.sleep(0.1)
+
+def down():
+    canvas.coords(Ro1, x1,y1+vy,x2,y2+vy)
+    canvas.update()
+    time.sleep(0.1)
+
+def up():
+    canvas.coords(Ro1, x1,y1-vy,x2,y2-vy)
+    canvas.update()
+    time.sleep(0.1)
+
+for r in range(1, 10):
+    x1,y1,x2,y2 = canvas.coords(Ro1)
+    right()
+    
+for r in range(1, 10):
+    x1,y1,x2,y2 = canvas.coords(Ro1)
+    left()
+
+for r in range(1,10):
+    x1,y1,x2,y2 = canvas.coords(Ro1)
+    up()
+    
+for r in range(1,10):
+    x1,y1,x2,y2 = canvas.coords(Ro1)
+    down()
+
 window.mainloop()
