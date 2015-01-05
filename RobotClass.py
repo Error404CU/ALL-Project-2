@@ -17,14 +17,9 @@ class robot:
     def drawRobot(self, canvas):
         self.canvas = canvas
         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y+self.size, fill=self.colour)
-        
 
-    def up:
+    def movement(self):
+        v = self.speed
 
-    def down:
-
-    def left:
-
-    def right:
-
+        self._vx += random.randint(-v, v)
     
