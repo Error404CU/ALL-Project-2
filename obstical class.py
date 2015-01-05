@@ -2,7 +2,7 @@ from tkinter import *
 import random
 
 class obstacle:
-    def _init__(self,x, y, size=4,:
+    def _init__(self,x, y, size=4):
         self.x = x
         self.y = y
         self.xEnd = x + size
