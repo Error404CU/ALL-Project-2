@@ -159,12 +159,15 @@ if (Location == Tr1 or Location2 == Tr1 or Location3 == Tr1):
     count += 100
     if (count <= 0):
         Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
-        print 
+    elif (count == 100):
+        canvas.delete(Score1)
         Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
-    elif (count <= 100):
-            Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
-    elif (count <= 200):
-            Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
     for r in range(1,8):
         x1,y1,x2,y2 = canvas.coords(Ro1)
@@ -177,10 +180,19 @@ for r in range(1,4):
     x1,y1,x2,y2 =canvas.coords(Ro1)
     right()
 time.sleep(1.0)
-if (count <= 100):
-        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
 if (Location == Tr8 or Location2 == Tr8 or Location3 == Tr8):
     count += 100
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
 for r in range(1,17):
     x1,y1,x2,y2=canvas.coords(Ro1)
@@ -191,6 +203,17 @@ for r in range(1,17):
 time.sleep(1.0)
 if (Location == Tr4 or Location2 == Tr4 or Location3 == Tr4):
     count += 100
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
     for r in range(1,10):
         x1,y1,x2,y2 = canvas.coords(Ro1)
@@ -205,6 +228,17 @@ for r in range(1,27):
 time.sleep(1.0)
 if (Location == Tr7 or Location2 == Tr7 or Location3 == Tr7):
     count += 100
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')    
     print count
 for r in range(1,4):
     x1,y1,x2,y2 = canvas.coords(Ro1)
@@ -218,6 +252,17 @@ for r in range(1,4):
 time.sleep(1.0)
 if (Location == Tr2 or Location2 == Tr2 or Location3 == Tr2):
     count +=100
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
     
 for r in range(1,4):
@@ -234,6 +279,17 @@ for r in range(1,4):
     up( )                  
 time.sleep(1.0)
 if (Location == Tr5 or Location2 == Tr5 or Location3 == Tr5):
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     count +=100
     print count
 for r in range(1,22):
@@ -243,8 +299,19 @@ for r in range(1,9):
     x1,y1,x2,y2=canvas.coords(Ro1)
     right()
 time.sleep(1.0)
-if (Location == Tr6 or Location2 == Tr5 or Location3 == Tr6):
+if (Location == Tr6 or Location2 == Tr6 or Location3 == Tr6):
     count += 100
+    if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
 for r in range(1,5):
     x1,y1,x2,y2=canvas.coords(Ro1)
@@ -262,11 +329,16 @@ time.sleep(1.0)
 if (Location == Tr3 or Location2 == Tr3 or Location3 == Tr3):
     count += 100
     if (count <= 0):
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 0')
+    elif (count == 100):
+        canvas.delete(Score1)
         Score1 = canvas.create_text(50,20, text='Robot1 Score: 100')
-    elif (count <= 100):
-            Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
-    elif (count <= 200):
-            Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
+    elif (count == 200):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 200')
+    elif (count == 300):
+        canvas.delete(Score1)
+        Score1 = canvas.create_text(50,20, text='Robot1 Score: 300')
     print count
 
 root.mainloop()
