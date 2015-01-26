@@ -101,21 +101,34 @@ def redb (a) :
         canvas.update()
         time.sleep(0.05)
 
+def yellow (a) :
+    for i in range (a) :
+        yellow = canvas.create_oval(tx1, ty1 + 30, tx2, ty2 +30, fill = "yellow")
+        canvas.update()
+        time.sleep(0.05)
+
+def yellowb (a) :
+    for i in range (a) :
+        yellow = canvas.create_oval(tx1, ty1 + 30, tx2, ty2 +30, fill = "black")
+        canvas.update()
+        time.sleep(0.05)
+
 def green (a) :
     for i in range (a) :
-        green = canvas.create_oval(tx1, ty1 + 50, tx2, ty2 + 50, fill = "green")
+        green = canvas.create_oval(tx1, ty1 + 60, tx2, ty2 + 60, fill = "green")
         canvas.update()
-        time.sleep(0.001)
+        time.sleep(0.05)
 
 def greenb (a) :
     for i in range (a) :
-        green = canvas.create_oval(tx1, ty1 + 50, tx2, ty2 + 50, fill = "black")
+        green = canvas.create_oval(tx1, ty1 + 60, tx2, ty2 + 60, fill = "black")
         canvas.update()
         time.sleep(0.05)
 
 def lights() :
     red = canvas.create_oval(tx1, ty1, tx2, ty2, fill = "black")
-    green = canvas.create_oval(tx1, ty1 + 50, tx2, ty2 + 50, fill = "black")
+    yellow = canvas.create_oval(tx1, ty1 + 30, tx2, ty2 + 30, fill = "black")
+    green = canvas.create_oval(tx1, ty1 + 60, tx2, ty2 + 60, fill = "black")
     
 
 
@@ -185,12 +198,14 @@ for i in range(1, len(listRbt)):
 # Traffic lights position
 tx1 = 650
 ty1 = 650
-tx2 = 700
-ty2 = 700
+tx2 = 670
+ty2 = 670
 #Traffic Lights
 lights()
 red(20)
 redb(1)
+yellow(10)
+yellowb(1)
 green(1)
 
 # Collision detection
@@ -211,8 +226,12 @@ while visited < nr:
             listRbt[j].moveRobot(c, d)
     if hello % 300 == 0:
         greenb(1)
-        red(10)
+        yellow(10)
+        yellowb(1)
+        red(20)
         redb(1)
+        yellow(10)
+        yellowb(1)
         green(1)
     for i in range(0, len(listLmk)):
         for j in range(1, len(listRbt)):
