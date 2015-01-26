@@ -1,5 +1,3 @@
-
-__author__ = 'Radu'
 # Importing libraries
 from Tkinter import *
 from datetime import datetime
@@ -177,8 +175,8 @@ while visited < nr:
             listRbt[j].moveRobot(c, d)
     for i in range(0, len(listLmk)):
         for j in range(1, len(listRbt)):
-            if (listRbt[j].y + listRbt[j].size >= listLmk[i].y) and (listRbt[j].y <= listLmk[i].y + listLmk[i].size) \
-            and (listRbt[j].x + listRbt[j].size >= listLmk[i].x - 10) and (listRbt[j].x + listRbt[j].size <= listLmk[i].x + 5):                      # Left Side
+            if (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 5) and (listRbt[j].y <= listLmk[i].y + listLmk[i].size + 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 15) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x - 5):                      # Left Side
                 if listLmk[i].v == 1:
                     if listLmk[i].tid > 0:
                         if listLmk[i].tid % 5 == 0:
@@ -193,12 +191,12 @@ while visited < nr:
                     listRbt[j].moveRobot(-a, b)
                     listRbt[j].scoreRobot(60, 650, 1)
                 else:
-                    listRbt[j].moveRobot(c, -d)
+                    listRbt[j].moveRobot(-c, d)
                     listRbt[j].scoreRobot(60, 660, 2)
 
 
-            elif (listRbt[j].y <= listLmk[i].y + listLmk[i].size) and (listRbt[j].y + listRbt[j].size >= listLmk[i].y) \
-            and (listRbt[j].x >= listLmk[i].x) and (listRbt[j].x <= listLmk[i].x + listLmk[i].size + 5):                           # Right Side
+            elif (listRbt[j].y <= listLmk[i].y + listLmk[i].size + 5) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x + listLmk[i].size + 5) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 15):                           # Right Side
                 if listLmk[i].v == 1:
                     if listLmk[i].tid > 0:
                         if listLmk[i].tid % 5 == 0:
@@ -213,12 +211,31 @@ while visited < nr:
                     listRbt[j].moveRobot(-a, b)
                     listRbt[j].scoreRobot(60, 650, 1)
                 else:
+                    listRbt[j].moveRobot(-c, d)
+                    listRbt[j].scoreRobot(60, 660, 2)
+
+
+            elif (listRbt[j].y + listRbt[j].size/2 <= listLmk[i].y - 5) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 15) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 5) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 5):                      # Up side
+                if listLmk[i].v == 1:
+                    if listLmk[i].tid > 0:
+                        if listLmk[i].tid % 5 == 0:
+                            listLmk[i].treasureBFound(canvas)
+                            listRbt[j].score += 500
+                        else:
+                            listLmk[i].treasureFound(canvas)
+                            listRbt[j].score += 100
+                    visited += 1
+                    listLmk[i].v = 0
+                if j % 2 == 1:
+                    listRbt[j].moveRobot(a, -b)
+                    listRbt[j].scoreRobot(60, 650, 1)
+                else:
                     listRbt[j].moveRobot(c, -d)
                     listRbt[j].scoreRobot(60, 660, 2)
 
-
-            elif (listRbt[j].y <= listLmk[i].y + listLmk[i].size) and (listRbt[j].y + listRbt[j].size >= listLmk[i].y - 10) \
-            and (listRbt[j].x + listRbt[j].size >= listLmk[i].x) and (listRbt[j].x <= listLmk[i].x + listLmk[i].size):                      # Up side
+            elif (listRbt[j].y + listRbt[j].size/2 <= listLmk[i].y + listLmk[i].size + 15) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y + listLmk[i].size + 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 10) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 10):                      # Down side
                 if listLmk[i].v == 1:
                     if listLmk[i].tid > 0:
                         if listLmk[i].tid % 5 == 0:
@@ -233,26 +250,7 @@ while visited < nr:
                     listRbt[j].moveRobot(a, -b)
                     listRbt[j].scoreRobot(60, 650, 1)
                 else:
-                    listRbt[j].moveRobot(-c, d)
-                    listRbt[j].scoreRobot(60, 660, 2)
-
-            elif (listRbt[j].y <= listLmk[i].y + listLmk[i].size + 11) and (listRbt[j].y >= listLmk[i].y + listLmk[i].size) \
-            and (listRbt[j].x >= listLmk[i].x) and (listRbt[j].x + listRbt[j].size <= listLmk[i].x + listLmk[i].size):                      # Down side
-                if listLmk[i].v == 1:
-                    if listLmk[i].tid > 0:
-                        if listLmk[i].tid % 5 == 0:
-                            listLmk[i].treasureBFound(canvas)
-                            listRbt[j].score += 500
-                        else:
-                            listLmk[i].treasureFound(canvas)
-                            listRbt[j].score += 100
-                    visited += 1
-                    listLmk[i].v = 0
-                if j % 2 == 1:
-                    listRbt[j].moveRobot(a, -b)
-                    listRbt[j].scoreRobot(60, 650, 1)
-                else:
-                    listRbt[j].moveRobot(-c, d)
+                    listRbt[j].moveRobot(c, -d)
                     listRbt[j].scoreRobot(60, 660, 2)
             if j % 2 == 1:
                 if listRbt[j].x <= 0:
