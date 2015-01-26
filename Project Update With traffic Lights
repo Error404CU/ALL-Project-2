@@ -1,0 +1,274 @@
+# Importing libraries
+from Tkinter import *
+from datetime import datetime
+import time
+import random
+import math
+
+# --------------------------------------------------------------------------------------
+# Window Defining
+window = Tk()
+window.title('Treasure Hunt!')
+#w = Label(window, text = "Treasure Hunt!")
+#w.pack()
+canvas = Canvas(window, width = 800, height = 800, bg = 'white')
+canvas.pack(padx = 0, pady = 0)
+
+# --------------------------------------------------------------------------------------
+# Classes
+class Robot(object):
+    def __init__(self, x, y, size = 5, speed = 10, color = "black", score = 0, scored = 0):
+        self.x = x
+        self.y = y
+        self.size = size
+        self.speed = speed
+        self.color = color
+        self.score = score
+        self.scored = scored
+    def drawRobot(self, canvas):
+        self.canvas = canvas
+        self.shape = canvas.create_rectangle(self.x, self.y, self.x + self.size, self.y + self.size, fill = self.color)
+    def scoreRobot(self, w, z, n):
+        self.w = w
+        self.z = z
+        self.n = n
+        self.canvas.delete(self.scored)
+        self.scored = canvas.create_text(self.w, self.z, text = "Robot %r Score: %r" % (self.n, self.score))
+    def moveRobot(self, a, b):
+        self.a = a
+        self.b = b
+        self.x += self.a
+        self.y += self.b
+        self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)
+
+        time.sleep(0.005)
+        self.canvas.update()
+
+class Landmark(object):
+    def __init__(self, x, y, name = "", size = 50, color = 'black', lid = 0, tid = 0, v = 1, s = 0, txt = 0, txt2 = 0):
+        self.x = x
+        self.y = y
+        self.name = name
+        self.size = size
+        self.color = color
+        self.tid = tid                      # Treasure ID
+        self.v = v                          # Valid
+        self.s = s
+        self.txt = txt
+        self.txt2 = txt2
+        self.lid = lid                      # Landmark ID
+    def drawLandmark(self, canvas):
+        self.canvas = canvas
+        self.p = self.canvas.create_image(self.x, self.y, image = gif1, anchor = NW)
+        self.txt = canvas.create_text(self.x + 15, self.y -8, text = self.name)
+        self.canvas.update()
+    def treasureFound(self,canvas):
+        self.txt2 = canvas.create_text(self.x + 15, self.y + self.size + 10, text = "Treasure %r found!!" %self.tid)
+        self.p = self.canvas.create_image(self.x, self.y, image = trImg, anchor = NW)
+        self.canvas.update()
+    def treasureBFound(self,canvas):
+        self.trBImg = PhotoImage(file = trImgBList[random.randint(0,1)])
+        self.txt2 = canvas.create_text(self.x + 15, self.y + self.size + 10, text = "Rare Treasure found!!")
+        self.p = self.canvas.create_image(self.x, self.y, image = self.trBImg, anchor = NW)
+        self.canvas.update()
+    def deleteLandmark(self):
+        self.canvas = canvas
+        self.canvas.delete(self.p)
+        self.canvas.delete(self.txt)
+        self.canvas.delete(self.txt2)
+        self.canvas.update()
+
+class TrafficLights:
+
+    def __init__(self):
+        
+        self.oval_red = canvas.create_oval(700, 620, 730, 650, fill="Black")
+        self.oval_amber = canvas.create_oval(700, 650, 730, 680, fill="Black")
+        self.oval_green = canvas.create_oval(700, 680, 730, 710, fill="Black")
+
+def createImage(ax, ay):
+    canvas.create_image(ax, ay, image = trImg, anchor = NW)
+
+
+# --------------------------------------------------------------------------------------
+# Main body
+line = canvas.create_line(0, 615, 800, 615)
+canvas.update()
+
+TrafficLights()
+
+trImgList = ['tr1.gif']
+trImgBList = ['trB1.gif', 'trB2.gif']
+gif1 = PhotoImage(file = 'im22.gif')
+trImg = PhotoImage(file = trImgList[0])
+#r1 = PhotoImage(file = 'r2.gif')
+
+#gif1 = PhotoImage(file = 'im22.gif')
+#canvas.create_image(ax, ay, image = gif1, anchor = NW)
+
+
+# Landmark creation and positioning
+
+listLmk = []                 # Landmark List
+lnr = [9, 16, 25, 36, 49]    # Possible number of landmarks
+nr = random.choice(lnr)
+
+for i in range(1, nr + 1):
+    x = "lmk" + str(i)
+    listLmk.append(x)
+
+rows = math.sqrt(nr)
+spaceBetweenC = (800 - 50 * rows) / (rows + 1)
+x = spaceBetweenC
+spaceBetweenR = (600 - 50 * rows) / (rows + 1)
+y = spaceBetweenR
+count = 0               # Counter
+ct = 0
+for i in range(0, len(listLmk)):
+    listLmk[i] = Landmark(x, y)
+    listLmk[i].drawLandmark(canvas)
+    if random.randint(1, 100) <= 60:
+        listLmk[i].tid = ct + 1
+        ct += 1
+    if i >= 1:
+        listLmk[i].lid = listLmk[i-1].lid + 1
+
+    x += 50 + spaceBetweenC
+    count += 1
+    if count == rows:
+        y += 50 + spaceBetweenR
+        x = spaceBetweenC
+        count = 0
+
+listRbt = ['1']
+for i in range(0,2):
+    x = 'r' + str(i)
+    listRbt.append(x)
+for i in range(1, len(listRbt)):
+    if i % 2 == 1:
+        listRbt[i] = Robot(random.randint(0, 30), random.randint(0, 30), 15)
+        listRbt[i].drawRobot(canvas)
+    else:
+        listRbt[i] = Robot(random.randint(750, 780), random.randint(550, 580), 15)
+        listRbt[i].drawRobot(canvas)
+# Bottom Side
+#B = LabelFrame(window, height = 40, width = 200, text = "Score:").pack(side = LEFT, padx = 50)
+#q = Button(B, text="Sure!")
+#q.pack(anchor = W, expand=1)
+#asd = Button(B, text="Hello", anchor=W, justify=LEFT, padx=2).pack()
+
+
+
+# Collision detection
+a = 1.0
+b = 1.0
+c = -1.0
+d = -1.0
+visited = 0
+width = 800
+height = 600
+while visited < nr:
+    for j in range(1, len(listRbt)):
+        if j % 2 == 1:
+            listRbt[j].moveRobot(a, b)
+        else:
+            listRbt[j].moveRobot(c, d)
+    for i in range(0, len(listLmk)):
+        for j in range(1, len(listRbt)):
+            if (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 5) and (listRbt[j].y <= listLmk[i].y + listLmk[i].size + 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 15) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x - 5):                      # Left Side
+                if listLmk[i].v == 1:
+                    if listLmk[i].tid > 0:
+                        if listLmk[i].tid % 5 == 0:
+                            listLmk[i].treasureBFound(canvas)
+                            listRbt[j].score += 500
+                        else:
+                            listLmk[i].treasureFound(canvas)
+                            listRbt[j].score += 100
+                    visited += 1
+                    listLmk[i].v = 0
+                if j % 2 == 1:
+                    listRbt[j].moveRobot(-a, b)
+                    listRbt[j].scoreRobot(60, 650, 1)
+                else:
+                    listRbt[j].moveRobot(-c, d)
+                    listRbt[j].scoreRobot(60, 660, 2)
+
+
+            elif (listRbt[j].y <= listLmk[i].y + listLmk[i].size + 5) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x + listLmk[i].size + 5) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 15):                           # Right Side
+                if listLmk[i].v == 1:
+                    if listLmk[i].tid > 0:
+                        if listLmk[i].tid % 5 == 0:
+                            listLmk[i].treasureBFound(canvas)
+                            listRbt[j].score += 500
+                        else:
+                            listLmk[i].treasureFound(canvas)
+                            listRbt[j].score += 100
+                        visited += 1
+                        listLmk[i].v = 0
+                if j % 2 == 1:
+                    listRbt[j].moveRobot(-a, b)
+                    listRbt[j].scoreRobot(60, 650, 1)
+                else:
+                    listRbt[j].moveRobot(-c, d)
+                    listRbt[j].scoreRobot(60, 660, 2)
+
+
+            elif (listRbt[j].y + listRbt[j].size/2 <= listLmk[i].y - 5) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y - 15) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 5) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 5):                      # Up side
+                if listLmk[i].v == 1:
+                    if listLmk[i].tid > 0:
+                        if listLmk[i].tid % 5 == 0:
+                            listLmk[i].treasureBFound(canvas)
+                            listRbt[j].score += 500
+                        else:
+                            listLmk[i].treasureFound(canvas)
+                            listRbt[j].score += 100
+                    visited += 1
+                    listLmk[i].v = 0
+                if j % 2 == 1:
+                    listRbt[j].moveRobot(a, -b)
+                    listRbt[j].scoreRobot(60, 650, 1)
+                else:
+                    listRbt[j].moveRobot(c, -d)
+                    listRbt[j].scoreRobot(60, 660, 2)
+
+            elif (listRbt[j].y + listRbt[j].size/2 <= listLmk[i].y + listLmk[i].size + 15) and (listRbt[j].y + listRbt[j].size/2 >= listLmk[i].y + listLmk[i].size + 5) \
+            and (listRbt[j].x + listRbt[j].size/2 >= listLmk[i].x - 10) and (listRbt[j].x + listRbt[j].size/2 <= listLmk[i].x + listLmk[i].size + 10):                      # Down side
+                if listLmk[i].v == 1:
+                    if listLmk[i].tid > 0:
+                        if listLmk[i].tid % 5 == 0:
+                            listLmk[i].treasureBFound(canvas)
+                            listRbt[j].score += 500
+                        else:
+                            listLmk[i].treasureFound(canvas)
+                            listRbt[j].score += 100
+                    visited += 1
+                    listLmk[i].v = 0
+                if j % 2 == 1:
+                    listRbt[j].moveRobot(a, -b)
+                    listRbt[j].scoreRobot(60, 650, 1)
+                else:
+                    listRbt[j].moveRobot(c, -d)
+                    listRbt[j].scoreRobot(60, 660, 2)
+            if j % 2 == 1:
+                if listRbt[j].x <= 0:
+                    a = 1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].x >= width:
+                    a = -1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].y <= 0:
+                    b = 1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].y >= height:
+                    b = -1.5 + random.randint(-1, 1)/10
+            else:
+                if listRbt[j].x <= 0:
+                    c = 1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].x >= width:
+                    c = -1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].y <= 0:
+                    d = 1.5 + random.randint(-1, 1)/10
+                elif listRbt[j].y >= height:
+                    d = -1.5 + random.randint(-1, 1)/10
+
+window.mainloop()
